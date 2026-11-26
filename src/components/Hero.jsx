@@ -1,57 +1,80 @@
-import { links } from '../data.js';
-
-const stats = [
-  { value: '2.7×', label: 'context extension, PACT-KV' },
-  { value: '9.61M', label: 'params, full SR model' },
-  { value: '9.52', label: 'CGPA' },
-];
+import { useCallback, useRef } from 'react';
+import SignalField from './SignalField.jsx';
+import { bootLines, links } from '../data.js';
 
 export default function Hero() {
+  const snrRef = useRef(null);
+  const posRef = useRef(null);
+  const modeRef = useRef(null);
+
+  // Writes straight to the DOM: the canvas reports every frame and React
+  // doesn't need to hear about it.
+  const onStats = useCallback(({ snr, x, y, idle }) => {
+    if (snrRef.current) snrRef.current.textContent = (snr * 100).toFixed(1).padStart(5, '0') + '%';
+    if (posRef.current) posRef.current.textContent = `${String(x).padStart(4, '0')},${String(y).padStart(4, '0')}`;
+    if (modeRef.current) modeRef.current.textContent = idle ? 'auto-scan' : 'cursor';
+  }, []);
+
   return (
     <section id="top" className="hero">
-      <div className="container hero__inner">
-        <p className="eyebrow">Gaurav Rai </p>
+      <h1 className="sr-only">Gaurav Rai, systems and machine learning engineer</h1>
 
-        <h1 className="hero__title">
-          Making <span className="hero__hot">deep learning</span> run where
-          the hardware says it can&rsquo;t —<br className="hero__br" />
-          <span className="hero__cold">tiered memory</span> for LLM inference,
-          quantized vision on the edge.
-        </h1>
-
-        <p className="hero__sub">
-          I am a Computer Science and Engineering student at Shiv Nadar University passionate 
-          about how things work under the hood. I enjoy breaking down complex systems, 
-          identifying bottlenecks, and iterating until I can measure tangible improvements. 
-          Whether I am exploring low-level hardware interactions, building machine learning 
-          infrastructure, or simply learning a new paradigm, I am driven by curiosity and the 
-          desire to build performant, reliable software. Outside of coding, I value continuous 
-          growth, meaningful collaborations, and drawing inspiration from the people around me.
-        </p>
-
-        <div className="hero__cta">
-          <a className="btn btn--solid" href="#research">See the research</a>
-          <a className="btn" href={links.github} target="_blank" rel="noreferrer">GitHub ↗</a>
+      <div className="hero__field frame">
+        <span className="frame__corner frame__corner--tl" />
+        <span className="frame__corner frame__corner--tr" />
+        <span className="frame__corner frame__corner--bl" />
+        <span className="frame__corner frame__corner--br" />
+        <SignalField onStats={onStats} />
+        <div className="hero__hud hero__hud--top mono">
+          <span>fig.0 · name, observed through noise</span>
+          <span className="hide-sm">move the cursor to restore the signal</span>
         </div>
-
-        <div className="hero__stats">
-          {stats.map((s) => (
-            <div className="hero__stat" key={s.label}>
-              <span className="hero__stat-value mono">{s.value}</span>
-              <span className="hero__stat-label">{s.label}</span>
-            </div>
-          ))}
+        <div className="hero__hud hero__hud--bottom mono">
+          <span>signal <b ref={snrRef}>000.0%</b></span>
+          <span className="hide-sm">lens <b ref={posRef}>0000,0000</b></span>
+          <span>mode <b ref={modeRef}>auto-scan</b></span>
         </div>
       </div>
 
-      <div className="container">
-        <div className="tier-divider">
-          <div className="tier-divider__hot" style={{ width: '62%' }} />
-          <div className="tier-divider__cold" style={{ width: '38%' }} />
+      <div className="hero__grid">
+        <div className="hero__copy">
+          <p className="kicker mono">Gaurav Rai — systems · ML · verification</p>
+          <p className="hero__claim">
+            I make expensive computation <em>cheap</em>,
+            and then I <span className="hl">prove</span> it&rsquo;s still right.
+          </p>
+          <p className="hero__sub">
+            I study Computer Science and Engineering at Shiv Nadar University. My work goes from CUDA
+            memory tiering for LLMs to zero-knowledge proofs on-chain, and from 9.6M-parameter edge
+            vision models to solvers for 20×20×20 Rubik&rsquo;s cubes. Every number in my
+            repositories comes from a script, every claim says what produced it, and every
+            limitation is written down.
+          </p>
+          <div className="hero__cta">
+            <a className="btn btn--acid" href="#index">Open the index <span aria-hidden>↓</span></a>
+            <a className="btn" href={links.resume} target="_blank" rel="noreferrer">Résumé <span aria-hidden>↗</span></a>
+            <a className="btn btn--ghost" href={links.github} target="_blank" rel="noreferrer">GitHub <span aria-hidden>↗</span></a>
+          </div>
         </div>
-        <div className="tier-caption">
-          <span>T1 — systems &amp; inference</span>
-          <span>T2 — vision &amp; restoration</span>
+
+        <div className="boot mono" aria-label="Recent work summary">
+          <div className="boot__head">
+            <span>~/gr — dmesg</span>
+            <span className="boot__dot" />
+          </div>
+          <ol>
+            {bootLines.map(([st, cmd, res], i) => (
+              <li key={cmd} style={{ animationDelay: `${0.5 + i * 0.18}s` }}>
+                <span className={`boot__st boot__st--${st === 'ok' ? 'ok' : 'wip'}`}>[{st === 'ok' ? ' ok ' : ' .. '}]</span>
+                <span className="boot__cmd">{cmd}</span>
+                <span className="boot__res">{res}</span>
+              </li>
+            ))}
+          </ol>
+          <div className="boot__foot">
+            <span>uptime: B.Tech &rsquo;28 · CGPA 9.52</span>
+            <span className="cursor-blink">_</span>
+          </div>
         </div>
       </div>
     </section>
