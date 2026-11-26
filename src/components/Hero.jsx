@@ -40,8 +40,8 @@ export default function Hero() {
         <div className="hero__copy">
           <p className="kicker mono">Gaurav Rai — AI systems · LLM inference · trustworthy ML</p>
           <p className="hero__claim">
-            I build AI that runs on <em>less</em>,
-            and <span className="hl">shows its work.</span>
+            I build systems that run on <em>less</em>,
+            and <span className="hl">show their work.</span>
           </p>
           <p className="hero__sub">
             I study Computer Science and Engineering at Shiv Nadar University and work on the
