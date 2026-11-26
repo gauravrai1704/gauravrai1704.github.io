@@ -4,7 +4,7 @@ import Hero from './components/Hero.jsx';
 import Index from './components/Index.jsx';
 import Terminal from './components/Terminal.jsx';
 import Palette from './components/Palette.jsx';
-import { Depth, Log, Papers, Thesis } from './components/Sections.jsx';
+import { Depth, Log, Thesis } from './components/Sections.jsx';
 import { links } from './data.js';
 
 export default function App() {
@@ -19,13 +19,12 @@ export default function App() {
         <Thesis />
         <Index />
         <Depth />
-        <Papers />
         <Log />
 
         <section id="contact" className="section contact">
           <header className="section__head">
-            <p className="mono section__no">05 / contact</p>
-            <h2 className="section__title">Hard problems welcome. <em>Ideally the ones nobody has measured yet.</em></h2>
+            <p className="mono section__no">04 / contact</p>
+            <h2 className="section__title">Building AI that has to work outside a notebook? <em>Let&rsquo;s talk.</em></h2>
           </header>
           <div className="contact__grid">
             <div className="contact__links">

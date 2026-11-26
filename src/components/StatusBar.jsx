@@ -45,13 +45,12 @@ export default function StatusBar({ onPalette }) {
   const time = useClock();
   const active = useActiveSection();
   const progress = useScrollProgress();
-  const current = sections.find((s) => s.id === active);
 
   return (
     <header className="bar mono">
       <a href="#top" className="bar__id" aria-label="Back to top">
         <span className="bar__mark">GR</span>
-        <span className="hide-sm">gaurav@snu:~{current ? `/${current.label.toLowerCase()}` : ''}</span>
+        <span className="bar__name">Gaurav Rai</span>
       </a>
       <nav className="bar__nav" aria-label="Sections">
         {sections.map((s) => (

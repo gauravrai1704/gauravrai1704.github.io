@@ -28,7 +28,7 @@ function run(raw) {
     case 'whoami':
       return [
         'Gaurav Rai — CSE @ Shiv Nadar University (2024–28), CGPA 9.52',
-        'systems · ML · verification · ' + links.location,
+        'AI systems · LLM inference · trustworthy ML · ' + links.location,
       ];
     case 'ls':
       return [
@@ -116,7 +116,7 @@ export default function Terminal() {
     <div className="term mono" onClick={() => inputRef.current?.focus({ preventScroll: true })}>
       <div className="term__bar">
         <span className="term__lights"><i /><i /><i /></span>
-        <span>gaurav@snu — zsh — 80×24</span>
+        <span>gaurav-rai — zsh — 80×24</span>
       </div>
       <div className="term__body" ref={bodyRef} aria-live="polite">
         {lines.map((l, i) => (

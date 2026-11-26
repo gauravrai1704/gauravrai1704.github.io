@@ -17,7 +17,7 @@ export default function Hero() {
 
   return (
     <section id="top" className="hero">
-      <h1 className="sr-only">Gaurav Rai, systems and machine learning engineer</h1>
+      <h1 className="sr-only">Gaurav Rai, AI systems engineer</h1>
 
       <div className="hero__field frame">
         <span className="frame__corner frame__corner--tl" />
@@ -38,17 +38,17 @@ export default function Hero() {
 
       <div className="hero__grid">
         <div className="hero__copy">
-          <p className="kicker mono">Gaurav Rai — systems · ML · verification</p>
+          <p className="kicker mono">Gaurav Rai — AI systems · LLM inference · trustworthy ML</p>
           <p className="hero__claim">
-            I make expensive computation <em>cheap</em>,
-            and then I <span className="hl">prove</span> it&rsquo;s still right.
+            I build AI that runs on <em>less</em>,
+            and <span className="hl">shows its work.</span>
           </p>
           <p className="hero__sub">
-            I study Computer Science and Engineering at Shiv Nadar University. My work goes from CUDA
-            memory tiering for LLMs to zero-knowledge proofs on-chain, and from 9.6M-parameter edge
-            vision models to solvers for 20×20×20 Rubik&rsquo;s cubes. Every number in my
-            repositories comes from a script, every claim says what produced it, and every
-            limitation is written down.
+            I study Computer Science and Engineering at Shiv Nadar University and work on the
+            engineering that makes AI practical: serving LLMs past the GPU memory wall, shrinking
+            vision models to INT8 for edge cameras, grounding LLM answers in the sources they cite,
+            and proving a model&rsquo;s verdict on-chain. Every number in my repositories comes from
+            a script, every claim says what produced it, and every limitation is written down.
           </p>
           <div className="hero__cta">
             <a className="btn btn--acid" href="#index">Open the index <span aria-hidden>↓</span></a>

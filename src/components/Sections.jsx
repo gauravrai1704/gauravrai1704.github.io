@@ -1,4 +1,4 @@
-import { archive, depth, log, papers, projects } from '../data.js';
+import { archive, depth, log, projects } from '../data.js';
 
 const byId = Object.fromEntries([...projects, ...archive].map((p) => [p.id, p]));
 export const openProject = (id) => window.dispatchEvent(new CustomEvent('open-project', { detail: id }));
@@ -27,7 +27,7 @@ export function Thesis() {
       <header className="section__head">
         <p className="mono section__no">00 / thesis</p>
         <h2 className="section__title">
-          Fast is easy to claim. <em>Correct and fast</em> is what I try to show.
+          Anyone can demo a model. <em>Making it fast, small and trustworthy</em> is the real work.
         </h2>
       </header>
       <ol className="principles">
@@ -84,35 +84,11 @@ export function Depth() {
   );
 }
 
-export function Papers() {
-  return (
-    <section id="papers" className="section">
-      <header className="section__head">
-        <p className="mono section__no">03 / papers</p>
-        <h2 className="section__title">Written up, <em>properly.</em></h2>
-      </header>
-      <ol className="bib">
-        {papers.map((p, i) => (
-          <li key={p.title} className="bib__item">
-            <span className="mono bib__n">[{i + 1}]</span>
-            <div>
-              <button className="bib__title" onClick={() => openProject(p.ref)}>{p.title}</button>
-              <p className="bib__meta">
-                {p.authors} · <span className="mono">{p.venue}</span> · {p.year}
-              </p>
-            </div>
-          </li>
-        ))}
-      </ol>
-    </section>
-  );
-}
-
 export function Log() {
   return (
     <section id="log" className="section">
       <header className="section__head">
-        <p className="mono section__no">04 / log</p>
+        <p className="mono section__no">03 / log</p>
         <h2 className="section__title"><span className="mono title-mono">git log</span> <em>--me</em></h2>
       </header>
       <ol className="gitlog">
